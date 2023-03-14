@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,10 +8,11 @@ using UnityEngine.UI;
 public class MainManager : MonoBehaviour
 {
     public Brick BrickPrefab;
+    public Transform bricksContainerTransform;
     public int LineCount = 6;
     public Rigidbody Ball;
 
-    public Text ScoreText;
+    public TMP_Text ScoreText;
     public GameObject GameOverText;
     
     private bool m_Started = false;
@@ -30,8 +32,8 @@ public class MainManager : MonoBehaviour
         {
             for (int x = 0; x < perLine; ++x)
             {
-                Vector3 position = new Vector3(-1.5f + step * x, 2.5f + i * 0.3f, 0);
-                var brick = Instantiate(BrickPrefab, position, Quaternion.identity);
+                Vector3 position = new Vector3(-1.5f + step * x, -0.8f - i * 0.3f, 0);
+                var brick = Instantiate(BrickPrefab, position, Quaternion.identity, bricksContainerTransform);
                 brick.PointValue = pointCountArray[i];
                 brick.onDestroyed.AddListener(AddPoint);
             }
@@ -67,10 +69,16 @@ public class MainManager : MonoBehaviour
         m_Points += point;
         ScoreText.text = $"Score : {m_Points}";
     }
+    
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 
     public void GameOver()
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+        DataManager.Instance.SavePlayerScore(m_Points);
     }
 }
