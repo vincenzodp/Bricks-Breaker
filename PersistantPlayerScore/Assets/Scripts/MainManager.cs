@@ -13,6 +13,7 @@ public class MainManager : MonoBehaviour
     public Rigidbody Ball;
 
     public TMP_Text ScoreText;
+    public TMP_Text BestScoreValueText;
     public GameObject GameOverText;
     
     private bool m_Started = false;
@@ -37,6 +38,11 @@ public class MainManager : MonoBehaviour
                 brick.PointValue = pointCountArray[i];
                 brick.onDestroyed.AddListener(AddPoint);
             }
+        }
+
+        if(DataManager.Instance.TryGetPlayerDataAt(0, out string playerName, out float playerScore))
+        {
+            BestScoreValueText.text = playerName + ": " + playerScore.ToString();
         }
     }
 

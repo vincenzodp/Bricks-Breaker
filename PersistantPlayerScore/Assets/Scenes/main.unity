@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 97436042}
   - component: {fileID: 97436046}
   - component: {fileID: 97436047}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Paddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -834,6 +834,7 @@ MonoBehaviour:
   LineCount: 6
   Ball: {fileID: 177912862}
   ScoreText: {fileID: 188020408}
+  BestScoreValueText: {fileID: 0}
   GameOverText: {fileID: 474497238}
 --- !u!1 &455529321
 GameObject:
@@ -1467,7 +1468,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2379,7 +2380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
