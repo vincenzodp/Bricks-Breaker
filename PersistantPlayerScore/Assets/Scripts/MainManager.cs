@@ -40,6 +40,14 @@ public class MainManager : MonoBehaviour
         }
     }
 
+    private void CheckEndgame()
+    {
+        if(FindObjectsOfType<Brick>().Length <= 0)
+        {
+            GameOver();
+        }
+    }
+
     private void Update()
     {
         if (!m_Started)
@@ -68,6 +76,7 @@ public class MainManager : MonoBehaviour
     {
         m_Points += point;
         ScoreText.text = $"Score : {m_Points}";
+        CheckEndgame();
     }
     
     public void GoToMenu()
@@ -80,5 +89,6 @@ public class MainManager : MonoBehaviour
         m_GameOver = true;
         GameOverText.SetActive(true);
         DataManager.Instance.SavePlayerScore(m_Points);
+        Destroy(Ball.gameObject);
     }
 }
